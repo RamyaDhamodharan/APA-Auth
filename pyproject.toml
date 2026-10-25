@@ -1,0 +1,46 @@
+  
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "genworx-ap-auth-service"
+version = "0.1.0"
+description = "GenWorx AP authentication service"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "sqlalchemy>=2.0",
+    "alembic>=1.13",
+    "psycopg[binary]",
+    "python-dotenv",
+    "pwdlib[argon2]",
+    "PyJWT",
+    "email-validator",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "httpx",
+    "ruff",
+    "mypy",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["B008"]
+[tool.mypy]
+python_version = "3.12"
+strict = true
